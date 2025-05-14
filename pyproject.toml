@@ -1,0 +1,64 @@
+# ===============================
+# 📦 Projeto e Metadados Básicos
+# ===============================
+[project]
+name = "fast-zero"  # Nome do projeto
+version = "0.1.0"   # Versão inicial
+description = ""    # Descrição opcional do projeto
+authors = [
+    { name = "erlison.santos", email = "erlison.santos@guaraves.com.br" }
+]
+readme = "README.md"  # Caminho para o arquivo README
+requires-python = ">=3.13, <4.0"  # Versão mínima e máxima suportada do Python
+
+# 🧩 Dependências principais do projeto
+dependencies = [
+    "fastapi[standard] (>=0.115.12,<0.116.0)",   # 🚀 FastAPI para APIs modernas
+    "uvicorn[standard] (>=0.34.2,<0.35.0)"       # ⚡ Uvicorn como servidor ASGI
+]
+
+# =====================================
+# 🛠️ Sistema de Build com Poetry
+# =====================================
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+# ======================================
+# 🧪 Dependências de Desenvolvimento
+# ======================================
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.11.9"         # 🧹 Linter e formatador de código
+pytest-cov = "^6.1.1"    # 🧪 Cobertura de testes com Pytest
+
+# ===============================
+# 🧹 Configurações do Ruff (Linter)
+# ===============================
+taskipy = "^1.14.1"
+[tool.ruff]
+line-length = 79                       # 📏 Limite de caracteres por linha
+extend-exclude = ['migrations']       # ❌ Ignorar a pasta de migrações
+
+# 🎨 Estilo de formatação com Ruff
+[tool.ruff.format]
+preview = true                        # 🧪 Ativa recursos experimentais
+quote-style = 'single'                # 🧾 Usar aspas simples por padrão
+
+# ===============================
+# 🔬 Configurações do Pytest
+# ===============================
+[tool.pytest.ini_options]
+pythonpath = "."                      # 📂 Define diretório base para os testes
+addopts = "-p no:warnings"            # 🚫 Oculta avisos nos testes
+
+# ===============================
+# 🚀 Tarefas Automatizadas (Taskipy)
+# ===============================
+[tool.taskipy.tasks]
+lint       = "ruff check"                                      # 🔍 Verifica problemas no código
+pre_format = "ruff check --fix"                                # 🛠️ Corrige automaticamente antes da formatação
+format     = "ruff format"                                     # 🎨 Aplica formatação ao código
+run        = "fastapi dev fast_zero/app.py"                    # ▶️ Roda a aplicação FastAPI
+pre_test   = "task lint"                                       # ✅ Lint automático antes dos testes
+test       = "pytest -s -x --cov=fast_zero -vv"                # 🧪 Roda testes com cobertura
+post_test  = "coverage html"                                   # 📊 Gera relatório de cobertura em HTML
