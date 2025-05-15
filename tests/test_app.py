@@ -20,4 +20,4 @@ def test_root_retorna_ola_mundo():
 
     # Assert
     assert response.status_code == HTTPStatus.OK  # statuscode: 200
-    assert response.json() == {'Message': 'Hello world!'}
+    assert response.json() == {'message': 'Hello world!'}
