@@ -1,7 +1,12 @@
 ## Tamplate base para futuros projetos 🤓
 
-- dependencias para o projeto estão nessa referencia:
+- Web Fundamentals
+https://fastapidozero.dunossauro.com/
+
+
+- Como o ambiente foi configurado:
 https://fastapidozero.dunossauro.com/4.0/01/
+
 
 
 ## Commit
